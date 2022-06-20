@@ -1,0 +1,6 @@
+{
+    "[dart]": {
+        "editor.autoIndent": "full",
+        "editor.tabSize": 4
+    }
+}
