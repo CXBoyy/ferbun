@@ -38,7 +38,15 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  void _pushAlphabet() {}
+  void _pushAlphabet() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) {
+          return const Alphabet();
+        },
+      ),
+    );
+  }
 
   void _pushNumbers() {}
 
@@ -81,8 +89,89 @@ class Alphabet extends StatefulWidget {
 }
 
 class _AlphabetState extends State<Alphabet> {
+  final _alphabet = [
+    "Aa",
+    "Bb",
+    "Cc",
+    "Çç",
+    "Dd",
+    "Ee",
+    "Êê",
+    "Ff",
+    "Gg",
+    "Hh",
+    "Ii",
+    "Îî",
+    "Jj",
+    "Kk",
+    "Ll",
+    "Mm",
+    "Nn",
+    "Oo",
+    "Pp",
+    "Qq",
+    "Rr",
+    "Ss",
+    "Şş",
+    "Tt",
+    "Uu",
+    "Ûû",
+    "Vv",
+    "Ww",
+    "Xx",
+    "Yy",
+    "Zz",
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold()
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Alfabeya Kurdî"),
+      ),
+      body: GridView.count(
+        crossAxisCount: 8,
+        childAspectRatio: 3 / 2,
+        crossAxisSpacing: 50,
+        mainAxisSpacing: 100,
+        children: List.generate(
+          (_alphabet.length - 1),
+          (index) {
+            const SizedBox(height: 30);
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color(0xFF0D47A1),
+                            Color(0xFF1976D2),
+                            Color(0xFF42A5F5),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(16.0),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {},
+                      child: Text(_alphabet[index]),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
