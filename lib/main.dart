@@ -38,6 +38,9 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  final double mainMenuButtonHeight = 100;
+  final double mainMenuButtonWidth = 170;
+
   void _pushAlphabet() {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -53,29 +56,99 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: GestureDetector(
-                onTap: _pushAlphabet,
-                child: const Text(
-                  "Alfabe",
-                  textAlign: TextAlign.center,
-                ),
+      body: Stack(
+        children: <Widget>[
+          Align(
+            alignment: const AlignmentDirectional(-0.5, 0),
+            child: SizedBox(
+              height: mainMenuButtonHeight,
+              width: mainMenuButtonWidth,
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      splashColor: Colors.red,
+                      onTap: _pushAlphabet,
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: const LinearGradient(
+                            colors: <Color>[
+                              Color(0xFF0D47A1),
+                              Color(0xFF1976D2),
+                              Color(0xFF42A5F5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(16.0),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: _pushAlphabet,
+                      child: const Text(
+                        "Alfabe",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: GestureDetector(
-                onTap: _pushNumbers,
-                child: const Text(
-                  "Hijmar",
-                  textAlign: TextAlign.center,
-                ),
+          ),
+          Align(
+            alignment: const AlignmentDirectional(0.5, 0),
+            child: SizedBox(
+              height: mainMenuButtonHeight,
+              width: mainMenuButtonWidth,
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      splashColor: Colors.red,
+                      onTap: _pushNumbers,
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: const LinearGradient(
+                            colors: <Color>[
+                              Color(0xFF0D47A1),
+                              Color(0xFF1976D2),
+                              Color(0xFF42A5F5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(16.0),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: _pushNumbers,
+                      child: const Text(
+                        "Hijmar",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -127,7 +200,10 @@ class _AlphabetState extends State<Alphabet> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Alfabeya Kurdî"),
+        title: const Align(
+          alignment: Alignment.center,
+          child: Text("Alfabeya Kurdî"),
+        ),
       ),
       body: GridView.count(
         crossAxisCount: 8,
@@ -155,7 +231,8 @@ class _AlphabetState extends State<Alphabet> {
                       ),
                     ),
                   ),
-                  Center(
+                  Align(
+                    alignment: Alignment.bottomCenter,
                     child: TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.all(16.0),
